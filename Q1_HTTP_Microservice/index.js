@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 5000;
 
-const userRoutes = require('./routes/users');
-const postRoutes = require('./routes/posts');
+const userRoutes = require('./routes/users.js');
+const postRoutes = require('./routes/posts.js');
 const { updateCache } = require('./services/dataService');
 
 app.use('/users', userRoutes);

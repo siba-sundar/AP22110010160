@@ -12,6 +12,8 @@ const api = axios.create({
   }
 });
 
+console.log('Data service connected to API', cache);
+
 async function getUsers() {
   try {
     const res = await api.get(`${BASE_URL}/users`);
