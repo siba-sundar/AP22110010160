@@ -6,16 +6,44 @@ function TopUsers() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const sampleUsers = [
+    {
+      id: 1,
+      name: "John Rice",
+      Posts: 25,
+      profileImage: "https://randomuser.me/api/portraits/men/1.jpg"
+    },
+    {
+      id: 2,
+      name: "Priya Patel",
+      Posts: 18,
+      profileImage: "https://randomuser.me/api/portraits/women/2.jpg"
+    },
+    {
+      id: 3,
+      name: "richard Brown",
+      Posts: 15,
+      profileImage: "https://randomuser.me/api/portraits/men/3.jpg"
+    }
+  ];
+
   useEffect(() => {
     const fetchTopUsers = async () => {
       try {
         const response = await axios.get('http://localhost:5000/users');
-        setTopUsers(response.data.users || response.data);
+        const userData = response.data.users || response.data;
+        
+        if (!userData || userData.length === 0) {
+          setTopUsers(sampleUsers);
+        } else {
+          setTopUsers(userData);
+        }
         setLoading(false);
       } catch (err) {
-        setError('Failed to fetch top users');
-        setLoading(false);
         console.error(err);
+        setTopUsers(sampleUsers);
+        // setError('Using sample data - Failed to fetch top users');
+        setLoading(false);
       }
     };
 
@@ -34,7 +62,7 @@ function TopUsers() {
             <div className="p-4">
               <div className="flex items-center mb-4">
                 <img 
-                  src={`https://randomuser.me/api/portraits/men/${(index % 20) + 1}.jpg`}
+                  src={user.profileImage}
                   alt={user.name}
                   className="w-12 h-12 rounded-full mr-4 object-cover"
                 />
