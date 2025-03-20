@@ -5,14 +5,14 @@ require('dotenv').config();
 const BASE_URL = 'http://20.244.56.144/test';
 const token = process.env.ACCESS_TOKEN;
 
-// Create axios instance with auth header
+
 const api = axios.create({
   headers: {
     'Authorization': `Bearer ${token}`
   }
 });
 
-console.log('Data service connected to API', cache);
+
 
 async function getUsers() {
   try {
