@@ -1,11 +1,20 @@
 const axios = require('axios');
 const { cache } = require('./cacheService');
+require('dotenv').config();
 
 const BASE_URL = 'http://20.244.56.144/test';
+const token = process.env.ACCESS_TOKEN;
+
+// Create axios instance with auth header
+const api = axios.create({
+  headers: {
+    'Authorization': `Bearer ${token}`
+  }
+});
 
 async function getUsers() {
   try {
-    const res = await axios.get(`${BASE_URL}/users`);
+    const res = await api.get(`${BASE_URL}/users`);
     return res.data.users;
   } catch (err) {
     console.log('Error getting users', err);
@@ -13,7 +22,25 @@ async function getUsers() {
   }
 }
 
+async function getPosts(userId) {
+  try {
+    const res = await api.get(`${BASE_URL}/users/${userId}/posts`);
+    return res.data.posts || [];
+  } catch (err) {
+    console.log(`Error getting posts for user ${userId}`, err);
+    return [];
+  }
+}
 
+async function getComments(postId) {
+  try {
+    const res = await api.get(`${BASE_URL}/posts/${postId}/comments`);
+    return res.data.comments || [];
+  } catch (err) {
+    console.log(`Error getting comments for post ${postId}`, err);
+    return [];
+  }
+}
 
 async function updateCache() {
   const users = await getUsers();

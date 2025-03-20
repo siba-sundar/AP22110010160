@@ -1,5 +1,5 @@
-const { updateCache } = require('../services/dataService');
-const { cache } = require('../services/cacheService');
+const { updateCache } = require('../services/dataService.js');
+const { cache } = require('../services/cacheService.js');
 
 async function checkCache(req, res, next) {
   const now = Date.now();

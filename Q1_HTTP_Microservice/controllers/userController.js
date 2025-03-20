@@ -1,4 +1,4 @@
-const { cache } = require('../services/cacheService');
+const { cache } = require('../services/cacheService.js');
 
 function getTopUsers(req, res) {
   const users = [];
