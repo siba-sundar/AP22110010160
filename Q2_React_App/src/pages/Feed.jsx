@@ -54,7 +54,7 @@ function Feed() {
       fetchLatestPosts();
     }, 10000);
 
-    return () => clearInterval(intervalId); // Clean up on unmount
+    return () => clearInterval(intervalId); 
   }, []);
 
   if (loading) return <div className="text-center p-6">Loading latest posts...</div>;
