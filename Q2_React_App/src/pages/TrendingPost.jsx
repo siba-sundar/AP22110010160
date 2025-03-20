@@ -6,6 +6,8 @@ function TrendingPosts() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+
+  // unable to get the data as the token expired
   const samplePosts = [
     {
       id: 1,
