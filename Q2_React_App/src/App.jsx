@@ -1,8 +1,8 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import TopUsers from './pages/TopUsers.jsx';
-import TrendingPosts from './pages/TrendingPost.jsx';
-import Feed from './pages/Feed.jsx';
+import TopUsers from '../pages/TopUsers.jsx';
+import TrendingPosts from '../pages/TrendingPost.jsx';
+import Feed from '../pages/Feed.jsx';
 import './index.css';
 
 // Defining the routes using createBrowserRouter
